@@ -4,107 +4,89 @@ import java.util.ArrayList;
 public class Calculator {
     public static void main(String args[]) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите выражение и нажмите ENTER для его вычисления");
-        System.out.println("--Для просмотра истории операций введите h");
-        System.out.println("--Для выхода из программы введите е");
-        ArrayList <StringBuilder> parts;
-        while(true){
-            String s = scanner.nextLine();
-            //String s = "567+(489-57)";
-            s = s.replace(" ", "");
-            try {
-                parts = parse(s);
-                calculate(parts);
-            } catch (Exception e) {
-                if(e.getMessage() == "History"){
-                    System.out.println("\nИстория действий");
-                    // showHistory();
-                    continue;
-                }
-                else if(e.getMessage() == "Error!"){
-                    System.out.println("ERROR! Некорректные данные введите снова");
-                    continue;
-                }
-                else if(e.getMessage() == "Exit"){
-                    System.out.println("Программа завершена");
+        double a1, a2, res;
+        ArrayList <String> history = new ArrayList<>();
+        boolean isExit = false;
+        System.out.println("Выберите операцию и введите её номер");
+        while(!isExit){
+            String command = "";
+            String epoch = "";
+            System.out.println("\n1. Сумма");
+            System.out.println("2. Разность");
+            System.out.println("3. Произведение");
+            System.out.println("4. Частное");
+            System.out.println("5. История операций");
+            System.out.println("6. Выход\n");
+            command = scanner.nextLine();
+            switch(command)
+            {
+                case "1": 
+                    System.out.println("Введите 2 числа через пробел:");
+                    a1 = scanner.nextDouble();
+                    a2 = scanner.nextDouble();
+                    res = a1 + a2;
+                    epoch += a1 + " + " + a2 + " = " + res;
+                    history.add(epoch);
+                    System.out.println(epoch);
                     break;
-                }
+                case "2": 
+                    System.out.println("Введите 2 числа через пробел:");
+                    a1 = scanner.nextDouble();
+                    a2 = scanner.nextDouble();
+                    res = a1 - a2;
+                    epoch += a1 + " - " + a2 + " = " + res;
+                    history.add(epoch);
+                    System.out.println(epoch);
+                    break;
+                case "3": 
+                    System.out.println("Введите 2 числа через пробел:");
+                    a1 = scanner.nextDouble();
+                    a2 = scanner.nextDouble();
+                    res = a1 * a2;
+                    epoch += a1 + " * " + a2 + " = " + res;
+                    history.add(epoch);
+                    System.out.println(epoch);
+                    break;
+                case "4": 
+                    System.out.println("Введите 2 числа через пробел:");
+                    a1 = scanner.nextDouble();
+                    a2 = scanner.nextDouble();
+                    if(a2 == 0){
+                        System.out.println("Ошибка: деление на 0");
+                    }
+                    else{
+                        res = a1 / a2;
+                        epoch += a1 + " / " + a2 + " = " + res;
+                        history.add(epoch);
+                        System.out.println(epoch);
+                    }
+                    break;
+                case "5": 
+                    System.out.println("\nИстория операций:");
+                    showHistory(history);
+                    break;
+                case "6" : 
+                    System.out.println("Программа завершена");   
+                    isExit = true;
+                    break;
+                default : System.out.println("Неверный номер операции. Попробуйте снова");
+                    break;
             }
-
         }
         scanner.close();
     }
 
-    private static void calculate(ArrayList<StringBuilder> parts) throws Exception {
-        ArrayList<Integer> openRoundsIndexes = new ArrayList<>();
-        ArrayList<Integer> closeRoundsIndexes = new ArrayList<>();
-        for(int i=0; i < parts.size(); i++){
-            if(parts.get(i).toString().equals("(")){
-                openRoundsIndexes.add(i);
-            }
-            else if(parts.get(i).toString().equals(")")){
-                closeRoundsIndexes.add(i);
-            }
+    private static void showHistory(ArrayList <String> history) {
+        int i = 1;
+        if(history.size() == 0){
+            System.out.println("Похоже вы ещё не выполняли никаких операций");
         }
-
-        if(openRoundsIndexes.size() != closeRoundsIndexes.size()){
-            throw new Exception("Error!");
-        }
-
-    }
-
-    private static long action(long a1, long a2, char action) throws Exception {
-        switch (action){
-            case '+':
-                return a1 + a2;
-            case '-':
-                return a1 - a2;
-            case '*':
-                return a1 * a2;
-            case '/':
-                return a1 / a2;
-            default:
-                throw new Exception("Error!");
+        else{
+            for (String epoch : history) {
+                System.out.println(i + ": " +epoch);
+                i++;
+            }
         }
     }
 
-    public static ArrayList<StringBuilder> parse(String in) throws Exception {
-        StringBuilder s = new StringBuilder(in);
-        ArrayList <StringBuilder> parts = new ArrayList<>();
-        StringBuilder part = new StringBuilder("");
-        for(int i=0; i < s.length(); i++){
-            char sym = s.charAt(i);
-            if(Character.isDigit(sym)){
-                part.append(sym);
-                if(i==s.length()-1)
-                    parts.add(part);
-            }
-            else{
-                if(part.length()!=0){
-                    parts.add(part);
-                    part = new StringBuilder();
-                }
-                switch (sym){
-                    case '+':
-                    case '-':
-                    case '*':
-                    case '/':
-                    case '(':
-                    case ')':
-                              part.append(sym);
-                              parts.add(part);
-                              part = new StringBuilder();
-                              break;
-                    case 'h':
-                        throw new Exception("History");
-                    case 'e':
-                        throw new Exception("Exit");
-                    default:
-                        throw new Exception("Error!");
-                }
-            }
-        }
-
-        return parts;
-    }
 }
