@@ -1,9 +1,7 @@
-{
-	"pages": [{
+[{
 		"id": 1,
 		"url": "https://habr.com/ru/company/selectel/blog/511748/",
 		"name": "Как найти скрытую камеру в съемной квартире или номере отеля",
 		"image": "https://habrastorage.org/webt/pw/od/uu/pwoduu7_nyu_jyftdus2ve6uvxq.png",
 		"type": "none"
-	}]
-}
+}]
