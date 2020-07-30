@@ -1,7 +1,14 @@
 [{
-	"id": 1,
+	"id": 0,
 	"url": "https://habr.com/ru/company/selectel/blog/511748/",
 	"name": "Как найти скрытую камеру в съемной квартире или номере отеля",
 	"image": "https://habrastorage.org/webt/pw/od/uu/pwoduu7_nyu_jyftdus2ve6uvxq.png",
+	"type": "none"
+},
+{
+	"id": 1,
+	"url": "https://www.youtube.com/watch?v=SuRiwVF5bzs",
+	"name": "Kotlin Messenger 04: Super Fast Groupie RecyclerView and New Messages",
+	"image": "https://i.ytimg.com/an_webp/-HB__yZqha0/mqdefault_6s.webp?du=3000&sqp=CNCuivkF&rs=AOn4CLBdMFqW66Lg7OnQ692dWF3HuFfOuw",
 	"type": "none"
 }]
