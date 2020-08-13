@@ -11,4 +11,11 @@
 	"name": "Kotlin Messenger 04: Super Fast Groupie RecyclerView and New Messages",
 	"image": "https://i.ytimg.com/an_webp/-HB__yZqha0/mqdefault_6s.webp?du=3000&sqp=CNCuivkF&rs=AOn4CLBdMFqW66Lg7OnQ692dWF3HuFfOuw",
 	"type": "none"
+},
+{
+	"id": 2,
+	"url": "https://code.tutsplus.com/ru/tutorials/concurrency-and-coroutines-in-kotlin--cms-29877",
+	"name": "Параллелизм и корутины в Котлине",
+	"image": "https://static.tutsplus.com/assets/tuts_logo-cf1e6fd0e5ca6cc573eb3cd0c94e16d7.svg",
+	"type": "none"
 }]
